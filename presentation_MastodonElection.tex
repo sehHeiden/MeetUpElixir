@@ -7,6 +7,7 @@
 \usetheme{Szeged}
 \usecolortheme{beaver}
 
+
 % Define custom colors for Elixir
 \definecolor{ElixirPurple}{RGB}{104, 55, 155} % Adjust the RGB values to match Elixir's purple
 \definecolor{ElixirLightPurple}{RGB}{170, 120, 210} % A lighter shade of purple
@@ -36,6 +37,18 @@
 \institute{Harz University of Applied Sciences}
 \date{\today}
 
+\newcommand{\graybar}[4]{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node at (current page.north west) [anchor=north west, xshift=#1, yshift=#2] {
+			\begin{tikzpicture}
+				\draw[fill=gray!10, draw=none] (0, 0) rectangle (#3, -#4);
+			\end{tikzpicture}
+		};
+	\end{tikzpicture}
+}
+
+
+
 % Define a custom command for post-it notes
 % Arguments:
 % 1: Horizontal shift (positive value moves right, negative left)
@@ -58,7 +71,8 @@
 	\end{tikzpicture}
 }
 
-\logo{\includegraphics[height=1cm]{LogoElixirBerlin.png}} % Adjust size as needed
+
+\logo{\includegraphics[height=1cm]{pictures/LogoElixirBerlin.png}} % Adjust size as needed
 
 \begin{document}
 	
@@ -82,13 +96,18 @@
 						\item geodata (Raster, Vector)
 						\item programming Python: GeoPandas, 
 						\item land usage; coverage (cadastre, property register)
+						
+						\hrule
+						
+						\item heat(-ing) demand and PV cadastres
+						\item economic efficiency calculator
 					\end{itemize}
 				\end{tcolorbox}
 			\end{column}
 			
 			\begin{column}{0.45\textwidth}
 				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Privat Live]
-					\includegraphics[width=\tcbtextwidth,   keepaspectratio]{vlcsnap-2024-01-31-23h37m06s479.png}
+					\includegraphics[width=\tcbtextwidth,   keepaspectratio]{pictures/vlcsnap-2024-01-31-23h37m06s479.png}
 				\end{tcolorbox}
 			\end{column}
 			
@@ -97,7 +116,7 @@
 	
 	\section{Motivation}
 	\begin{frame}{Election on Twitter}
-		\includegraphics[width=\linewidth, keepaspectratio]{TwitterElection2012/Twitter_Election_2012.png}
+		\includegraphics[width=\linewidth, keepaspectratio]{pictures/TwitterElection2012/Twitter_Election_2012.png}
 	\end{frame}
 	
 
@@ -106,13 +125,13 @@
 	
 	\begin{column}{0.45\textwidth}
 		\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Frequency]
-				\includegraphics[width=\tcbtextwidth,   keepaspectratio]{TwitterElection2012/twitter_temp_distr.png}
+				\includegraphics[width=\tcbtextwidth,   keepaspectratio]{pictures/TwitterElection2012/twitter_temp_distr.png}
 		\end{tcolorbox}
 	\end{column}
 	
 	\begin{column}{0.45\textwidth}
 		\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Prediction]
-			\includegraphics[width=\tcbtextwidth,   keepaspectratio]{TwitterElection2012/twitter_svm.png}
+			\includegraphics[width=\tcbtextwidth,   keepaspectratio]{pictures/TwitterElection2012/twitter_svm.png}
 		\end{tcolorbox}
 	\end{column}
 	
@@ -122,13 +141,16 @@
 	
 		\section{Motivation}
 	\begin{frame}{Election on Mastodon}
-		\includegraphics[width=\linewidth, keepaspectratio]{TwitterElection2012/Twitter_Election_2012.png}
+		\includegraphics[width=\linewidth, keepaspectratio]{pictures/TwitterElection2012/Twitter_Election_2012.png}
 		\postitnote{1.5cm}{-3.5cm}{4.8cm}{Bavarian State Election}
-		\postitnote{8.2cm}{-3.5cm}{5.5cm}{Deep Learning}
-		\postitnote{2.1cm}{-4.2cm}{1.8cm}{Mastodon}
+		\postitnote{8.2cm}{-3.5cm}{6.5cm}{Pre-Trained Deep Learning NLP Model}
+		\postitnote{2.3cm}{-4.2cm}{1.8cm}{Mastodon}
 		
 		\postitnote{6.1cm}{-2.8cm}{1.8cm}{Mastodon}
 		\postitnote{10.8cm}{-2.8cm}{2.5cm}{2023}
+		
+		 \graybar{5.1cm}{-4.1cm}{8.8cm}{2.0cm}
+
 	\end{frame}
 	
 	\section{Planning - What can go wrong?}
