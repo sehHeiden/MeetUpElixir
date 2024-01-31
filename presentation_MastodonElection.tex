@@ -1,0 +1,139 @@
+% !TeX spellcheck = en_GB
+\documentclass[usenames,dvipsnames,aspectratio=169]{beamer}
+\usepackage{tcolorbox} % Add this package
+\usepackage{tikz}
+\usetikzlibrary{shadows} % Load the shadows library
+\usepackage{graphicx}
+\usetheme{Szeged}
+\usecolortheme{beaver}
+
+% Define custom colors for Elixir
+\definecolor{ElixirPurple}{RGB}{104, 55, 155} % Adjust the RGB values to match Elixir's purple
+\definecolor{ElixirLightPurple}{RGB}{170, 120, 210} % A lighter shade of purple
+\definecolor{ElixirVeryLightPurple}{RGB}{230, 220, 250} % A very light shade of purple for the background
+
+
+% Setting color of bars
+% Setting colors for the bars and title
+\setbeamercolor{palette primary}{bg=ElixirPurple,fg=white}
+\setbeamercolor{palette secondary}{bg=ElixirLightPurple,fg=white}
+\setbeamercolor{palette tertiary}{bg=ElixirPurple,fg=white}
+\setbeamercolor{palette quaternary}{bg=ElixirPurple,fg=white}
+\setbeamercolor{titlelike}{parent=palette primary, fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=ElixirPurple}
+\setbeamercolor{background canvas}{bg=ElixirVeryLightPurple}
+
+
+% Set item colors
+\setbeamercolor{item}{fg=ElixirPurple}
+\setbeamercolor{itemize item}{fg=ElixirPurple}
+\setbeamercolor{itemize subitem}{fg=ElixirPurple}
+
+
+\title{Sentiment Analysis on Mastodon Posts}
+\subtitle{Predicting Election Outcomes with Elixir?}
+\author{Sebastian Heiden}
+\institute{Harz University of Applied Sciences}
+\date{\today}
+
+% Define a custom command for post-it notes
+% Arguments:
+% 1: Horizontal shift (positive value moves right, negative left)
+% 2: Vertical shift (positive value moves up, negative down)
+% 3: Width of the post-it note
+% 4: Text to be placed in the post-it note
+\newcommand{\postitnote}[4]{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north west, 
+		xshift=#1, 
+		yshift=#2, 
+		fill=yellow!40, 
+		draw=black, 
+		thick, 
+		text width=#3, 
+		rounded corners, 
+		drop shadow] 
+		at (current page.north west) 
+		{#4};
+	\end{tikzpicture}
+}
+
+\logo{\includegraphics[height=1cm]{LogoElixirBerlin.png}} % Adjust size as needed
+
+\begin{document}
+	
+	{
+		\setbeamertemplate{headline}{} % Removes header from title page
+		\begin{frame}
+			\titlepage
+		\end{frame}
+	}
+	
+	% Your other slides go here
+	
+	\section{About Me}
+	\begin{frame}{About Me}
+		\begin{columns}
+			
+			\begin{column}{0.45\textwidth}
+				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Working Live]
+					
+					\begin{itemize}
+						\item geodata (Raster, Vector)
+						\item programming Python: GeoPandas, 
+						\item land usage; coverage (cadastre, property register)
+					\end{itemize}
+				\end{tcolorbox}
+			\end{column}
+			
+			\begin{column}{0.45\textwidth}
+				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Privat Live]
+					\includegraphics[width=\tcbtextwidth,   keepaspectratio]{vlcsnap-2024-01-31-23h37m06s479.png}
+				\end{tcolorbox}
+			\end{column}
+			
+		\end{columns}
+	\end{frame}
+	
+	\section{Motivation}
+	\begin{frame}{Election on Twitter}
+		\includegraphics[width=\linewidth, keepaspectratio]{TwitterElection2012/Twitter_Election_2012.png}
+	\end{frame}
+	
+
+	\begin{frame}{Prediction}
+	\begin{columns}
+	
+	\begin{column}{0.45\textwidth}
+		\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Frequency]
+				\includegraphics[width=\tcbtextwidth,   keepaspectratio]{TwitterElection2012/twitter_temp_distr.png}
+		\end{tcolorbox}
+	\end{column}
+	
+	\begin{column}{0.45\textwidth}
+		\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Prediction]
+			\includegraphics[width=\tcbtextwidth,   keepaspectratio]{TwitterElection2012/twitter_svm.png}
+		\end{tcolorbox}
+	\end{column}
+	
+	\end{columns}
+	\end{frame}
+	
+	
+		\section{Motivation}
+	\begin{frame}{Election on Mastodon}
+		\includegraphics[width=\linewidth, keepaspectratio]{TwitterElection2012/Twitter_Election_2012.png}
+		\postitnote{1.5cm}{-3.5cm}{4.8cm}{Bavarian State Election}
+		\postitnote{8.2cm}{-3.5cm}{5.5cm}{Deep Learning}
+		\postitnote{2.1cm}{-4.2cm}{1.8cm}{Mastodon}
+		
+		\postitnote{6.1cm}{-2.8cm}{1.8cm}{Mastodon}
+		\postitnote{10.8cm}{-2.8cm}{2.5cm}{2023}
+	\end{frame}
+	
+	\section{Planning - What can go wrong?}
+	\begin{frame}{Next Steps}
+	\end{frame}
+	
+\end{document}
+
