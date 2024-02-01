@@ -92,16 +92,17 @@
 			\begin{column}{0.45\textwidth}
 				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Working Live]
 					
+					\underline{topics}:
+					\begin{itemize}
+						\item heat demand and PV cadastres
+					\end{itemize}
+					\underline{using}:
 					\begin{itemize}
 						\item geodata (Raster, Vector)
-						\item programming Python: GeoPandas, 
-						\item land usage; coverage (cadastre, property register)
-						
-						\hrule
-						
-						\item heat(-ing) demand and PV cadastres
-						\item economic efficiency calculator
+						\item Python: GeoPandas, Numpy
+						\item land usage; coverage, property register
 					\end{itemize}
+		
 				\end{tcolorbox}
 			\end{column}
 			
@@ -139,23 +140,116 @@
 	\end{frame}
 	
 	
-		\section{Motivation}
 	\begin{frame}{Election on Mastodon}
 		\includegraphics[width=\linewidth, keepaspectratio]{pictures/TwitterElection2012/Twitter_Election_2012.png}
 		\postitnote{1.5cm}{-3.5cm}{4.8cm}{Bavarian State Election}
 		\postitnote{8.2cm}{-3.5cm}{6.5cm}{Pre-Trained Deep Learning NLP Model}
-		\postitnote{2.3cm}{-4.2cm}{1.8cm}{Mastodon}
+		
 		
 		\postitnote{6.1cm}{-2.8cm}{1.8cm}{Mastodon}
 		\postitnote{10.8cm}{-2.8cm}{2.5cm}{2023}
 		
-		 \graybar{5.1cm}{-4.1cm}{8.8cm}{2.0cm}
+		 \graybar{4.1cm}{-4.1cm}{10.8cm}{2.0cm}
+		 \postitnote{2.3cm}{-4.2cm}{1.8cm}{Mastodon}
 
 	\end{frame}
 	
-	\section{Planning - What can go wrong?}
-	\begin{frame}{Next Steps}
+	\section{DS Background}
+	
+	\begin{frame}{Data Science \& Big Data}
+		\begin{columns}
+			
+			\begin{column}{0.45\textwidth}
+				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=DS Perspective]
+					\includegraphics[width=\tcbtextwidth,   keepaspectratio]{pictures/high_level.png}
+				\end{tcolorbox}
+			\end{column}
+			
+			\begin{column}{0.45\textwidth}
+				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Big Data]
+					
+					\begin{itemize}
+						\item Volumne
+						\item Velocity
+						\item Variety
+						\hrule
+						\item Varacity
+						\hrule
+						\item Value
+						\item Validity
+					
+					\end{itemize}
+					
+				\end{tcolorbox}
+			\end{column}
+		\end{columns}
 	\end{frame}
+	
+	\begin{frame}{CRISP-DM}
+		\includegraphics[width=\linewidth, keepaspectratio]{pictures/crisp_dm.png}
+	\end{frame}
+	
+	\section{Lets Get some Data}
+	\begin{frame}{Research Question}
+		
+		Predict the voting result of the 2023 Bavarian State election with Mastadon.
+		
+		\begin{itemize}
+			\item time period: six weeks
+			\item  
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}{Sourcing}
+		
+		\begin{itemize}
+			\item Search: {{instance\_url}}\/api\/v1\/timelines\/tag/{{tag\_name}}
+			\begin{itemize}
+				\item opt-in
+				\item finished role out 2 days before election
+			\end{itemize}
+			\item Tags: {{isntance\_url}}\/api\/v2\/search?q={{search\_word}}
+			\begin{itemize}
+				\item used public timeline
+			\end{itemize}
+			
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Data Understanding}
+	\end{frame}
+	
+	\begin{frame}{Data Cleaning}
+		\begin{columns}
+			
+			\begin{column}{0.45\textwidth}
+				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Text Cleaning]
+				\end{tcolorbox}
+			\end{column}
+			
+			\begin{column}{0.45\textwidth}
+				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Post Selection]
+					
+					
+				\end{tcolorbox}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\section{Lets Get some Data}
+	\begin{frame}{Polls CSU}
+		\includegraphics[width=\linewidth, keepaspectratio]{pictures/paper/polls/visualization_csu_polls.png}
+	\end{frame}
+	
+	\begin{frame}{Polls CSU}
+		\includegraphics[width=\linewidth, keepaspectratio]{pictures/paper/polls/visualization_fw_polls.png}
+	\end{frame}
+	
+	\begin{frame}{Post Frequencies}
+		\includegraphics[width=\linewidth, keepaspectratio]{pictures/paper/sentiments/visualization_valid_posts_frequency.png}
+	\end{frame}
+	
 	
 \end{document}
 
