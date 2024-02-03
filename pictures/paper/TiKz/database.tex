@@ -1,0 +1,37 @@
+% !TeX spellcheck = en_GB
+
+
+% Define block styles
+\tikzstyle{entity} = [rectangle, draw, fill=blue!20, minimum width=8em, minimum height=3em, font=\sffamily]
+\tikzstyle{relationship} = [diamond, aspect=2, draw, fill=red!20, font=\sffamily]
+\tikzstyle{attribute} = [ellipse, draw, fill=yellow!20, minimum width=6em, font=\sffamily]
+\tikzstyle{multi attribute} = [ellipse, draw, fill=green!20, minimum width=6em, double, font=\sffamily]
+\tikzstyle{line} = [draw, -latex]
+
+\begin{tikzpicture}[auto, node distance=1.5cm]
+	% Place nodes
+	\node[entity] (user) {User};
+	\node[attribute] (uid) [above=of user] {\underline{ID}} edge (user);
+	\node[attribute] (uname) [above left=of user] {Name} edge (user);
+	\node[attribute] (unote) [above right=of user] {Note} edge (user);
+	\node[multi attribute] (ufields) [left=of user] {Fields} edge (user);
+	
+	\node[entity] (post) [right=5cm of user] {Post};
+	\node[attribute] (pid) [above=of post] {\underline{ID}} edge (post);
+	\node[attribute] (pdate) [below left=of post] {Date} edge (post);
+	\node[attribute] (pcontent) [above right=of post] {Content} edge (post);
+	
+	\node[entity] (tag) [right=7cm of post] {Tag};
+	\node[attribute] (tid) [above=of tag] {\underline{ID}} edge (tag);
+	\node[attribute] (ttag) [above right=of tag] {Tag} edge (tag);
+	
+	% Place relationships
+	\node[relationship] (has) [right=of user] {has} edge (user) edge (post);
+	\node[relationship] (tagged) [right=of post] {tagged with} edge (post) edge (tag);
+	
+	% Draw edges
+	\path[line] (user) -- (has);
+	\path[line] (post) -- (has);
+	\path[line] (post) -- (tagged);
+	\path[line] (tag) -- (tagged);
+\end{tikzpicture}

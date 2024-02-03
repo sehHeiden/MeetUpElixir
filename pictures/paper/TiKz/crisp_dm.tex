@@ -1,0 +1,71 @@
+% !TeX spellcheck = en_GB
+
+\definecolor{walnut}{RGB}{61, 43, 31}  % Deep, dark brown color akin to walnut
+
+\tikzset{
+	block/.style={
+		rectangle,
+		draw,
+		fill=yellow!30,
+		text width=7em,
+		text centered,
+		rounded corners=3mm,
+		minimum height=4em,
+		line width=0.7mm,
+	},
+	arrow/.style={
+		thick,
+		-{Latex[length=3mm,width=3mm]},
+		line width=1mm,
+		walnut % Adjusted color
+	},
+	doublearrow/.style={
+		thick,
+		{Latex[length=3mm,width=3mm]}-{Latex[length=3mm,width=3mm]},
+		line width=1mm,
+		walnut % Adjusted color
+	},
+	decision/.style={
+		diamond,
+		draw,
+		fill=blue!20,
+		text width=4.5em,
+		text badly centered,
+		node distance=3cm,
+		inner sep=0pt,
+		thick
+	},
+	dashedarrow/.style={ % Style for dashed arrow
+		thick,
+		-{Latex[length=3mm,width=3mm]},
+		line width=1mm,
+		walnut, % Adjusted color
+		dashed
+	}
+}
+
+\begin{tikzpicture}[node distance=1.2cm and 3.5cm]
+	% Place nodes
+	\node [block] (business) {Business understanding};
+	\node [block, right=4.5cm of business] (dataund) {Data understanding};
+	\node [block, right=3.0cm of dataund] (dataprep) {Data preparation};
+	\node [block, below=of dataprep] (modeling) {Modelling};
+	\node [block, below=of dataund] (evaluation) {Evaluation};
+	\node [block, below=of business, align=center] (implementation) {Implementation\\into production};
+	
+	% Draw edges
+	\draw [arrow] (dataund) -- (dataprep);
+	\draw [doublearrow] (dataprep) -- (modeling); % Arrow starts from the center of the node
+	\draw [arrow] (modeling) -- (evaluation);
+	\draw [arrow] (evaluation) -- (implementation); % Arrow with head on both ends
+
+	\draw [doublearrow] (business) -- (dataund); % Arrow with head on both ends
+	\draw [dashedarrow] (evaluation) -- (business);
+	
+	% Source text, aligned with the 'Business understanding' node
+	\node[anchor=north west, align=left, text width=15cm, below=of implementation, yshift=1cm, xshift=6cm] (source) {Source: P. Chapman, J. Clinton, R. Kerber, T. Khabaza, T. Reinartz, C. Shearer, R. Wirth (2000); CRISP-DM 1.0 Step-by-step data mining guides};
+	
+	% Dashed box around the diagram
+	\node (box) [draw, dashed, walnut, line width=0.75mm, rounded corners=3mm, fit= (dataprep) (dataund) (modeling) (evaluation) , inner sep=2.0mm] {};
+	
+\end{tikzpicture}

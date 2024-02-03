@@ -1,0 +1,56 @@
+% !TeX spellcheck = en_GB
+
+% Define block styles
+\tikzset{
+	decision/.style={
+		diamond, 
+		draw, 
+		fill=blue!20, 
+		text width=4.5em, 
+		text badly centered, 
+		node distance=2cm, 
+		inner sep=0pt
+	},
+	block/.style={
+		rectangle, 
+		draw, 
+		fill=blue!20, 
+		text width=5em, 
+		text centered, 
+		rounded corners, 
+		minimum height=4em
+	},
+	line/.style={
+		draw, 
+		-{Latex[length=3mm,width=3mm]}, 
+		thick
+	},
+	decisionarrow/.style={
+		draw, 
+		-{Latex[length=3mm,width=3mm]}, 
+		thick, 
+		decorate, 
+		decoration={snake, amplitude=.2mm, segment length=2mm, post length=1mm}
+	}
+}
+
+\begin{tikzpicture}[node distance=2.5cm and 2.5cm, auto, every node/.style={font=\Large}]
+	% Place nodes
+	\node [decision] (bavinstance) {Bavarian Instance?};
+	\node [decision,below right=1cm of bavinstance] (bavfield) {Bavarian Location in Field?};
+	\node [decision, below right=1cm of bavfield] (bavusernote) {Bavarian Location in User note?};
+	\node [decision, below right=1cm of bavusernote] (inferlang) {Language is German?};
+	\node [block, left=3.5cm of inferlang, node distance=2.5cm] (german) {German};
+	\node [block, right=1.5cm of inferlang, node distance=3cm] (foreign) {Foreign};
+	\node [block, left of=german, node distance=4cm] (bavarian) {Bavarian};
+	
+	% Draw edges
+	\draw [line] (bavinstance) -- node [near start] {no} (bavfield);
+	\draw [line] (bavfield) -- node [near start] {no} (bavusernote);
+	\draw [line] (bavusernote) -- node [near start] {no} (inferlang);
+	\draw [line] (inferlang) -- node [near start] {yes} (german);
+	\draw [line] (inferlang) -- node [near start] {no} (foreign);
+	\draw [decisionarrow] (bavfield.west) -| node [near start, above] {yes} (bavarian);
+	\draw [decisionarrow] (bavusernote.west) -| node [near start, above] {yes} (bavarian);
+	\draw [decisionarrow] (bavinstance.west) -| node [near start, above] {yes} (bavarian);
+\end{tikzpicture}

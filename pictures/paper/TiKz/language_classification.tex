@@ -1,0 +1,31 @@
+% !TeX spellcheck = en_GB
+
+% Define block styles
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=15em, text centered, rounded corners, minimum height=3em, drop shadow]
+\tikzstyle{line} = [draw, -latex, line width=0.7mm,]
+
+\begin{tikzpicture}[node distance=3.0cm and 2cm, auto, every node/.style={font=\Huge}] % Adjusted node distance for wider separation
+	% Nodes
+	\node [block] (init) {XLM-RoBERTa};
+	%\node [block, below left=2cm and 3cm of init] (german) {German}; % Position adjusted for wider layout
+	%\node [block, below right=2cm and 3cm of init] (english) {English}; % Position adjusted for wider layout
+	\node [block, below left=3cm and 3cm of init] (germanbert) {german-sentiment\_bert};
+	\node [block, below right=3cm and 3cm of init] (roberta) {RoBERTa BERTweet - Sentiment};
+	\node [block, below=3cm of germanbert] (bavarianq1) {Bavarian?};
+	\node [block, below=3cm of roberta] (bavarianq2) {Bavarian?};
+	\node [block, below=3cm of bavarianq1] (german2) {German}; % Position adjusted for separation
+	\node [block, below=3cm of bavarianq2] (english2) {English}; % Position adjusted for separation
+	\node [block, below right=3cm and 1cm of bavarianq1] (bavarian) {Bavarian}; % Position adjusted for separation
+	
+	% Edges
+	\path [line] (init) -| node [near start] {German} (germanbert);
+	\path [line] (init) -| node [near start] {English} (roberta);
+	%\path [line] (german) -- (germanbert);
+	%\path [line] (english) -- (roberta);
+	\path [line] (germanbert) -- (bavarianq1);
+	\path [line] (roberta) -- (bavarianq2);
+	\path [line] (bavarianq1) -- node [near start, right] {yes} (bavarian);
+	\path [line] (bavarianq1) -- node [near start, left] {no} (german2);
+	\path [line] (bavarianq2) -- node [near start, left] {yes} (bavarian);
+	\path [line] (bavarianq2) -- node [near start, right] {no} (english2);
+\end{tikzpicture}

@@ -2,7 +2,10 @@
 \documentclass[usenames,dvipsnames,aspectratio=169]{beamer}
 \usepackage{tcolorbox} % Add this package
 \usepackage{tikz}
-\usetikzlibrary{shadows} % Load the shadows library
+\usetikzlibrary{shadows, positioning, shapes.geometric, arrows.meta, fit, decorations.pathmorphing, er}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{pgf-pie}
 \usepackage{graphicx}
 \usetheme{Szeged}
 \usecolortheme{beaver}
@@ -86,113 +89,22 @@
 	% Your other slides go here
 	
 	\section{About Me}
-	\begin{frame}{About Me}
-		\begin{columns}
-			
-			\begin{column}{0.45\textwidth}
-				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Working Live]
-					
-					\underline{topics}:
-					\begin{itemize}
-						\item heat demand and PV cadastres
-					\end{itemize}
-					\underline{using}:
-					\begin{itemize}
-						\item geodata (Raster, Vector)
-						\item Python: GeoPandas, Numpy
-						\item land usage; coverage, property register
-					\end{itemize}
-		
-				\end{tcolorbox}
-			\end{column}
-			
-			\begin{column}{0.45\textwidth}
-				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Privat Live]
-					\includegraphics[width=\tcbtextwidth,   keepaspectratio]{pictures/vlcsnap-2024-01-31-23h37m06s479.png}
-				\end{tcolorbox}
-			\end{column}
-			
-		\end{columns}
-	\end{frame}
+	\include{aboutme}
 	
 	\section{Motivation}
-	\begin{frame}{Election on Twitter}
-		\includegraphics[width=\linewidth, keepaspectratio]{pictures/TwitterElection2012/Twitter_Election_2012.png}
-	\end{frame}
-	
-
-	\begin{frame}{Prediction}
-	\begin{columns}
-	
-	\begin{column}{0.45\textwidth}
-		\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Frequency]
-				\includegraphics[width=\tcbtextwidth,   keepaspectratio]{pictures/TwitterElection2012/twitter_temp_distr.png}
-		\end{tcolorbox}
-	\end{column}
-	
-	\begin{column}{0.45\textwidth}
-		\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Prediction]
-			\includegraphics[width=\tcbtextwidth,   keepaspectratio]{pictures/TwitterElection2012/twitter_svm.png}
-		\end{tcolorbox}
-	\end{column}
-	
-	\end{columns}
-	\end{frame}
-	
-	
-	\begin{frame}{Election on Mastodon}
-		\includegraphics[width=\linewidth, keepaspectratio]{pictures/TwitterElection2012/Twitter_Election_2012.png}
-		\postitnote{1.5cm}{-3.5cm}{4.8cm}{Bavarian State Election}
-		\postitnote{8.2cm}{-3.5cm}{6.5cm}{Pre-Trained Deep Learning NLP Model}
-		
-		
-		\postitnote{6.1cm}{-2.8cm}{1.8cm}{Mastodon}
-		\postitnote{10.8cm}{-2.8cm}{2.5cm}{2023}
-		
-		 \graybar{4.1cm}{-4.1cm}{10.8cm}{2.0cm}
-		 \postitnote{2.3cm}{-4.2cm}{1.8cm}{Mastodon}
-
-	\end{frame}
+	\include{motivation}
 	
 	\section{DS Background}
+	\include{ds}
 	
-	\begin{frame}{Data Science \& Big Data}
-		\begin{columns}
-			
-			\begin{column}{0.45\textwidth}
-				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=DS Perspective]
-					\includegraphics[width=\tcbtextwidth,   keepaspectratio]{pictures/high_level.png}
-				\end{tcolorbox}
-			\end{column}
-			
-			\begin{column}{0.45\textwidth}
-				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Big Data]
-					
-					\begin{itemize}
-						\item Volumne
-						\item Velocity
-						\item Variety
-						\hrule
-						\item Varacity
-						\hrule
-						\item Value
-						\item Validity
-					
-					\end{itemize}
-					
-				\end{tcolorbox}
-			\end{column}
-		\end{columns}
-	\end{frame}
+	\section{Baseline}
+	\include{polls}
 	
-	\begin{frame}{CRISP-DM}
-		\includegraphics[width=\linewidth, keepaspectratio]{pictures/crisp_dm.png}
-	\end{frame}
 	
 	\section{Lets Get some Data}
 	\begin{frame}{Research Question}
 		
-		Predict the voting result of the 2023 Bavarian State election with Mastadon.
+		Predict the voting result of the 2023 Bavarian State election with Mastodon.
 		
 		\begin{itemize}
 			\item time period: six weeks
@@ -218,6 +130,22 @@
 	\end{frame}
 	
 	\begin{frame}{Data Understanding}
+		
+		\begin{figure}[htbp]
+			\centering
+			\resizebox{\columnwidth}{!}{\input{pictures/paper/TiKz/database.tex}}
+			\caption{ER Diagram}
+		\end{figure}
+		%\input{pictures/paper/TiKz/database.tex}
+		
+	\end{frame}
+	
+	\begin{frame}{Data Understanding 2}
+		\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=\linewidth]{pictures/example_posts.png}
+		\caption{Example Post}
+		\end{figure}
 	\end{frame}
 	
 	\begin{frame}{Data Cleaning}
@@ -225,11 +153,35 @@
 			
 			\begin{column}{0.45\textwidth}
 				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Text Cleaning]
+					
+				\begin{itemize}
+					\item html tags
+					\item links
+					\item special characters
+					\item double spaces
+				\end{itemize}
+				
+				
 				\end{tcolorbox}
 			\end{column}
 			
 			\begin{column}{0.45\textwidth}
 				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Post Selection]
+					
+					\begin{itemize}
+						\item regional filter
+						\begin{itemize}
+							\item name local entity
+							\item name any candidate
+						\end{itemize}
+						\item party attribution filter
+												\begin{itemize}
+							\item single party in post
+							\item party highest frequency in post
+						\end{itemize}
+						\item text length
+						\item double spaces
+					\end{itemize}
 					
 					
 				\end{tcolorbox}
@@ -237,19 +189,44 @@
 		\end{columns}
 	\end{frame}
 	
-	\section{Lets Get some Data}
-	\begin{frame}{Polls CSU}
-		\includegraphics[width=\linewidth, keepaspectratio]{pictures/paper/polls/visualization_csu_polls.png}
-	\end{frame}
-	
-	\begin{frame}{Polls CSU}
-		\includegraphics[width=\linewidth, keepaspectratio]{pictures/paper/polls/visualization_fw_polls.png}
-	\end{frame}
+
 	
 	\begin{frame}{Post Frequencies}
 		\includegraphics[width=\linewidth, keepaspectratio]{pictures/paper/sentiments/visualization_valid_posts_frequency.png}
 	\end{frame}
 	
+	\begin{frame}{Region Classification}
+		\begin{columns}
+			
+			\begin{column}{0.45\textwidth}
+				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Text Cleaning]
+					\begin{figure}[htbp]
+						\centering
+						\resizebox{\columnwidth}{!}{\input{pictures/paper/TiKz/region_selection.tex}}
+						\caption{High Level}
+					\end{figure}
+				%\input{pictures/paper/TiKz/region_selection.tex}
+				\end{tcolorbox}
+			\end{column}
+			
+			\begin{column}{0.45\textwidth}
+				\begin{tcolorbox}[colback=white, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Post Selection]
+					
+					\begin{figure}[htbp]
+						\centering
+						\resizebox{\columnwidth}{!}{\input{pictures/paper/TiKz/language_classification.tex}}
+						\caption{High Level}
+					\end{figure}
+					%\input{pictures/paper/TiKz/language_classification.tex}
+				\end{tcolorbox}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	
+\begin{frame}{Sentiment analysis}
+	todo: show example
+\end{frame}
 	
 \end{document}
 
