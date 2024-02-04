@@ -1,0 +1,121 @@
+% !TeX spellcheck = en_GB
+
+\begin{frame}{Research Question}
+	
+	Predict the voting result of the 2023 Bavarian State election with Mastodon.
+	
+	\begin{itemize}
+		\item time period: six weeks
+		\item  
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Sourcing}
+	
+	\begin{itemize}
+		\item Search: {{instance\_url}}\/api\/v1\/timelines\/tag/{{tag\_name}}
+		\begin{itemize}
+			\item used public timeline
+		\end{itemize}
+		\item Tags: {{isntance\_url}}\/api\/v2\/search?q={{search\_word}}
+		\begin{itemize}
+			\item opt-in
+			\item finished role out 2 days before election
+		\end{itemize}
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Data Understanding}
+	
+	\begin{figure}[htbp]
+		\centering
+		\resizebox{\columnwidth}{!}{\input{pictures/paper/TiKz/database.tex}}
+		\caption{ER Diagram}
+	\end{figure}
+	%\input{pictures/paper/TiKz/database.tex}
+	
+\end{frame}
+
+\begin{frame}{Data Understanding 2}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=\linewidth]{pictures/example_posts.png}
+		\caption{Example Post}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Data Cleaning}
+	\begin{columns}
+		
+		\begin{column}{0.55\textwidth}
+			\begin{tcolorbox}[enhanced jigsaw, colback=white, opacityback=.4,  colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Text Cleaning]
+				
+				\begin{itemize}
+					\item html tags
+					\item links
+					\item special characters
+					\item double spaces
+				\end{itemize}
+				
+				
+			\end{tcolorbox}
+		\end{column}
+		
+		\begin{column}{0.55\textwidth}
+			\begin{tcolorbox}[enhanced jigsaw, colback=white, opacityback=.4, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Post Selection]
+				
+				\begin{itemize}
+					\item regional filter
+					\begin{itemize}
+						\item name local entity
+						\item name any candidate
+					\end{itemize}
+					\item party attribution filter
+					\begin{itemize}
+						\item single party in post
+						\item party highest frequency in post
+					\end{itemize}
+					\item text length
+					\item double spaces
+				\end{itemize}
+				
+				
+			\end{tcolorbox}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+
+\begin{frame}{Post Frequencies}
+	\includegraphics[width=\linewidth, keepaspectratio]{pictures/paper/sentiments/visualization_valid_posts_frequency.png}
+\end{frame}
+
+\begin{frame}{Region Classification}
+	\begin{columns}
+		
+		\begin{column}{0.55\textwidth}
+			\begin{tcolorbox}[enhanced jigsaw, colback=white, opacityback=.4, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Text Cleaning]
+				\begin{figure}[htbp]
+					\centering
+					\resizebox{\columnwidth}{!}{\input{pictures/paper/TiKz/region_selection.tex}}
+					\caption{High Level}
+				\end{figure}
+				%\input{pictures/paper/TiKz/region_selection.tex}
+			\end{tcolorbox}
+		\end{column}
+		
+		\begin{column}{0.55\textwidth}
+			\begin{tcolorbox}[enhanced jigsaw, colback=white, opacityback=.4, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Post Selection]
+				
+				\begin{figure}[htbp]
+					\centering
+					\resizebox{\columnwidth}{!}{\input{pictures/paper/TiKz/language_classification.tex}}
+					\caption{High Level}
+				\end{figure}
+			\end{tcolorbox}
+		\end{column}
+	\end{columns}
+\end{frame}
