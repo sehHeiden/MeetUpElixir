@@ -5,26 +5,40 @@
 	Predict the voting result of the 2023 Bavarian State election with Mastodon.
 	
 	\begin{itemize}
-		\item time period: six weeks
-		\item  
+		\item time period: six weeks before, 4 weeks after election
+		\item selection bias: socio-economics, gender, age
+		\item differentiate Bavarian from other users
+		\item sample size
+		\item what about X|Twitter?
 	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}{Sourcing}
-	
-	\begin{itemize}
-		\item Search: {{instance\_url}}\/api\/v1\/timelines\/tag/{{tag\_name}}
-		\begin{itemize}
-			\item used public timeline
-		\end{itemize}
-		\item Tags: {{isntance\_url}}\/api\/v2\/search?q={{search\_word}}
-		\begin{itemize}
-			\item opt-in
-			\item finished role out 2 days before election
-		\end{itemize}
+		\begin{columns}
 		
-	\end{itemize}
+		\begin{column}{0.65\textwidth}
+			\begin{tcolorbox}[enhanced jigsaw, colback=white, opacityback=.4, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Endpoints]
+				Tags: \url{ {{instance_url}}/api/v1/timelines/tag/{{tag_name}} }
+				\begin{itemize}
+					\item used public timeline
+				\end{itemize}
+				Search: \url{ {{instance\_url}}\/api\/v2\/search?q={{search\_word}} }
+				\begin{itemize}
+					\item opt-in
+					\item log-in
+					\item finished role out 2 days before election
+				\end{itemize}
+			\end{tcolorbox}
+		\end{column}
+		
+		\begin{column}{0.45\textwidth}
+			\begin{tcolorbox}[enhanced jigsaw, colback=white, opacityback=.4, colframe=ElixirPurple, arc=3mm, boxrule=0mm, height=0.8\textheight, valign=center, title=Tags]
+				\includegraphics[height=\tcbtextheight,   keepaspectratio]{pictures/tag_bayern.png}
+			\end{tcolorbox}
+		\end{column}
+		
+	\end{columns}
 \end{frame}
 
 \begin{frame}{Data Understanding}
@@ -78,7 +92,6 @@
 						\item party highest frequency in post
 					\end{itemize}
 					\item text length
-					\item double spaces
 				\end{itemize}
 				
 				
@@ -101,9 +114,8 @@
 				\begin{figure}[htbp]
 					\centering
 					\resizebox{\columnwidth}{!}{\input{pictures/paper/TiKz/region_selection.tex}}
-					\caption{High Level}
+					\caption{Classification: Bavarian}
 				\end{figure}
-				%\input{pictures/paper/TiKz/region_selection.tex}
 			\end{tcolorbox}
 		\end{column}
 		
@@ -113,7 +125,7 @@
 				\begin{figure}[htbp]
 					\centering
 					\resizebox{\columnwidth}{!}{\input{pictures/paper/TiKz/language_classification.tex}}
-					\caption{High Level}
+					\caption{Language Classification}
 				\end{figure}
 			\end{tcolorbox}
 		\end{column}
