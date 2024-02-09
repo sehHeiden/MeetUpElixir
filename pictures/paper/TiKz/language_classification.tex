@@ -1,21 +1,56 @@
 % !TeX spellcheck = en_GB
 
 % Define block styles
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=15em, text centered, rounded corners, minimum height=3em, drop shadow]
-\tikzstyle{line} = [draw, -latex, line width=0.7mm,]
+\tikzset{
+	block/.style={
+		rectangle, 
+		draw, 
+		fill=blue!20, 
+		text width=15em, 
+		text centered, 
+		rounded corners, 
+		minimum height=3em, 
+		drop shadow
+	},
+	doubleblock/.style={ % New style for double-lined blocks
+		rectangle, 
+		draw=black, 
+		double, 
+		double distance=2pt, % Adjust the distance between the lines here
+		fill=blue!20, 
+		text width=15em, 
+		text centered, 
+		rounded corners, 
+		minimum height=3em, 
+		drop shadow
+	},
+	line/.style={
+		draw, 
+		-{Latex[length=3mm,width=3mm]}, 
+		line width=0.7mm,
+	}
+}
+
+
 
 \begin{tikzpicture}[node distance=3.0cm and 2cm, auto, every node/.style={font=\Huge}] % Adjusted node distance for wider separation
+	
+	\coordinate (start) at (0, 1cm);
 	% Nodes
-	\node [block] (init) {XLM-RoBERTa};
+	\node [block, below=1cm of start] (init) {XLM-RoBERTa};
 	%\node [block, below left=2cm and 3cm of init] (german) {German}; % Position adjusted for wider layout
 	%\node [block, below right=2cm and 3cm of init] (english) {English}; % Position adjusted for wider layout
 	\node [block, below left=3cm and 3cm of init] (germanbert) {german-sentiment\_bert};
 	\node [block, below right=3cm and 3cm of init] (roberta) {RoBERTa BERTweet - Sentiment};
 	\node [block, below=3cm of germanbert] (bavarianq1) {Bavarian?};
 	\node [block, below=3cm of roberta] (bavarianq2) {Bavarian?};
-	\node [block, below=3cm of bavarianq1] (german2) {German}; % Position adjusted for separation
-	\node [block, below=3cm of bavarianq2] (english2) {English}; % Position adjusted for separation
-	\node [block, below right=3cm and 1cm of bavarianq1] (bavarian) {Bavarian}; % Position adjusted for separation
+	
+	\node [doubleblock, below=3cm of bavarianq1] (german2) {German}; % Position adjusted for separation
+	\node [doubleblock, below right=3cm and 1cm of bavarianq1] (bavarian) {Bavarian}; % Position adjusted for separation
+	\node [doubleblock] at ([yshift=-2.5cm]bavarianq2.south) (english2) {English}; % Adjusted position
+
+
+	\draw [line] (start) -- (bavinstance);
 	
 	% Edges
 	\path [line] (init) -| node [near start] {German} (germanbert);

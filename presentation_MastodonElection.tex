@@ -2,11 +2,15 @@
 \documentclass[usenames,dvipsnames,aspectratio=169]{beamer}
 \usepackage[many]{tcolorbox} % Add this package
 \usepackage{tikz}
-\usetikzlibrary{shadows, positioning, shapes.geometric, arrows.meta, fit, decorations.pathmorphing, er}
+\usetikzlibrary{shadows, positioning, shapes.geometric, arrows.meta, fit, decorations.pathmorphing, er, automata}
 \usepackage{pgf-pie}
 \usepackage{graphicx}
+\usepackage{url}
+\usepackage{minted}
 \usetheme{Szeged}
 \usecolortheme{beaver}
+\usepackage[backend=biber, style=nature]{biblatex}
+\addbibresource{ElixirMeetup.bib}
 
 
 % Define custom colors for Elixir
@@ -35,8 +39,8 @@
 \title{Sentiment Analysis on Mastodon Posts}
 \subtitle{Predicting Election Outcomes with Elixir?}
 \author{Sebastian Heiden}
-\institute{Harz University of Applied Sciences}
-\date{Febuary 8, 2024}
+\institute{Harz University of Applied Sciences, \\ Student: M.Sc. Data Science, 3rd Semester}
+\date{February 8, 2024}
 
 \newcommand{\graybar}[4]{
 	\begin{tikzpicture}[remember picture, overlay]

@@ -18,7 +18,9 @@
 		text width=5em, 
 		text centered, 
 		rounded corners, 
-		minimum height=4em
+		minimum height=4em,
+		double,
+		double distance=2pt
 	},
 	line/.style={
 		draw, 
@@ -35,21 +37,32 @@
 }
 
 \begin{tikzpicture}[node distance=2.5cm and 2.5cm, auto, every node/.style={font=\Large}]
+	
+	\coordinate (start) at (0, 1cm) ;
+	
 	% Place nodes
-	\node [decision] (bavinstance) {Bavarian Instance?};
+	\node [decision,below=1cm of start] (bavinstance) {Bavarian Instance?};
+	
+	
 	\node [decision,below right=1cm of bavinstance] (bavfield) {Bavarian Location in Field?};
 	\node [decision, below right=1cm of bavfield] (bavusernote) {Bavarian Location in User note?};
 	\node [decision, below right=1cm of bavusernote] (inferlang) {Language is German?};
+	
+	% End Note
 	\node [block, left=3.5cm of inferlang, node distance=2.5cm] (german) {German};
-	\node [block, right=1.5cm of inferlang, node distance=3cm] (foreign) {Foreign};
-	\node [block, left of=german, node distance=4cm] (bavarian) {Bavarian};
+	\node [block, right=2.5cm of inferlang, node distance=3cm] (foreign) {Foreign};
+	\node [block, left of=german, node distance=5cm] (bavarian) {Bavarian};
 	
 	% Draw edges
+	\draw [line] (start) -- (bavinstance);
+	
 	\draw [line] (bavinstance) -- node [near start] {no} (bavfield);
 	\draw [line] (bavfield) -- node [near start] {no} (bavusernote);
 	\draw [line] (bavusernote) -- node [near start] {no} (inferlang);
 	\draw [line] (inferlang) -- node [near start] {yes} (german);
 	\draw [line] (inferlang) -- node [near start] {no} (foreign);
+	
+	
 	\draw [decisionarrow] (bavfield.west) -| node [near start, above] {yes} (bavarian);
 	\draw [decisionarrow] (bavusernote.west) -| node [near start, above] {yes} (bavarian);
 	\draw [decisionarrow] (bavinstance.west) -| node [near start, above] {yes} (bavarian);
